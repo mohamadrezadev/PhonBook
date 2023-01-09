@@ -1,0 +1,112 @@
+﻿@model Basemodel
+@section pre
+{
+}
+   <div class="row mt-2 mb-2 mx-1">
+        @if (ViewBag.message != null)
+        {
+            <div class="row">
+                <div class="alert alert-danger col-12">
+                    @ViewBag.message
+                </div>
+            </div>
+        }
+    </div>
+ <div class="col-lg-4 col-md-12 mx-0 mx-sm-2">
+        <form asp-controller="Home" asp-action="Search_Contact"
+            class="form-inline my-2 my-lg-0 mx-lg-0 d-flex  mx-0 responsive " method="get">
+            <input name="Fullname" class="form-control " type="search" placeholder="نام و نام خانوادگی"
+                aria-label="Search">
+            <button class="btn btn-outline-light  mx-1" style="background-color: #FF3D00;" type="submit"> جستجو
+            </button>
+        </form>
+    </div>
+    <div class="col-lg-4 col-md-12 mx-0 mx-sm-2  ">
+
+        <form asp-controller="Home" asp-action="Search_namegrop_Contact" class="form-inline my-2 my-lg-0 d-flex   responsive"
+            method="get">
+            <input name="Name_Grop" class="form-control" type="search" placeholder="جستجو مخاطب براساس نام گروه " aria-label="Search">
+            <button class="btn  mx-1 btn-outline-light" style="background-color:#FF3D00;" type="submit">جستجو
+            </button>
+        </form>
+    </div>
+<section class="container-fluid">
+    <div class="row mt-2">
+        <div class="container table-responsive-lg">
+            <table class="table  table-hover table-responsive-lg">
+                <thead class=" text-center text-light " style="background-color: #8E24AA;">
+                    <tr class="responsive ">
+                        <th>ردیف </th>
+                        <th>نام و نام خانوادگی</th>
+                        <th>سمت </th>
+                        <th>شماره ثابت</th>
+                        <th>تلفن همراه  </th>
+                        <th>ایمیل </th>
+                        <th> گروه</th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody class="table-responsive">
+                    @if (Model.Vmcontacts.Any())
+                    {
+                        int count = 1;
+                        @foreach (var item in Model.Vmcontacts)
+                        {
+                            <tr class="responsive">
+                                <td>@count</td>
+                                <td>@item.Fullname</td>
+                                <td>@item.POST</td>
+                                <td>@item.Tell_phone</td>
+                                <td>@item.Phone_number1</td>
+                                <td>@item.Email</td>
+                                <td>@item.Name_Grop</td>
+                                <td hidden>@item.Id</td>
+                                <td>
+                                    <button class="btn btn-outline-light  btnn" style="background-color: #FFAB00;" value="@item.Id" data-toggle="modal" data-target="#editContact" >
+                                        ویرایش
+                                    </button>
+                                </td>
+                                <td>
+                                    <button  style="background-color: #B71C1C;"  class="btn btn-outline-light deletebtn" value="@item.Id">
+                                            حذف
+                                    </button>
+                                </td>
+                            </tr>
+                            count++;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="alert-danger">
+                                اطلاعاتی وجود ندارد
+                            </td>
+                        </tr>
+                    }
+                <tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!-- Modal edit -->
+<div id="editContact" class="modal fade" itabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">ویرایش اطلاعات  </h5>
+                <button type="button" class="close btn-close-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <partial name="_EditContact"   />
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+ 
+}

@@ -1,0 +1,92 @@
+@model Basemodel
+
+
+<div class="row m-0">
+    <form class="form-control" action="Contact/Update" method="post">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-2 mb-3">
+                <label class="control-label required"> نام و نام خانوداگی </label>
+                @* <input type="text"  name="Fullname" id="Fullname" class="form-control border-secondary " required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')" />  *@
+                <input type="text" id="Fullname" name="Fullname" class="form-control border-secondary " required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')" data-validation="name" > 
+                <span class="text-danger"></span>
+                <div id="nameAlert"></div>
+            </div>
+            <div class="col-lg-6 col-lg-offset-2 mb-3">
+                <label class="control-label required"> سمت </label>
+                <input type="text" name="POST" id="post" class="form-control border-secondary "  required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')" />
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-2 mb-3">
+                <label class="control-label required"> شماره ثابت </label>
+                <input type="tel"  name="Tell_phone" id="Tell_phone"   maxlength="8" dir="ltr"  class="form-control border-secondary "  required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')"
+                onkeypress="return onlyNumberKey(event)" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="col-lg-6 col-lg-offset-2 mb-3">
+                <label class="control-label"> تلفن همراه </label>
+                <input type="tel" name="Phone_number1" id="Phone_number1" class="form-control  border-secondary"  onkeypress="return onlyNumberKey(event)"
+                    dir="ltr" maxlength="11">
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-2 mb-3">
+                <label class="control-label"> ایمیل </label>
+                <input type="email" name="Email" id="Email" data-validation="" class="form-control border-secondary" id="email" >
+            </div>
+            <div class="col-lg-6 col-lg-offset-2 mb-3 ">
+                <label class="control-label"> نام گروه </label>
+                <select class="form-control  border-secondary" id="ddlIncidents_editmodal">
+                    <option selected id="modal_grop"> انتخاب گروه</option>
+                    @foreach (var item in Model.Groups)
+                    {
+                        <option id="@item.Id" value="@item.Id"> @item.Name</option>
+                    }
+                </select>
+                <input  hidden id="idgp" name="gropid" />
+                <input  hidden id="IdContact" name="Id" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-lg-3 col-lg-offset-2 mb-3">
+                <label class="control-label"> نام گروه </label>
+                <input type="text" class="form-control" disabled="disabled" id="namegap_editmodal" placeholder=" ">
+            </div>
+            <div class="col-lg-3 col-lg-offset-2 mb-3">
+                <label class="control-label"> نام شرکت </label>
+                <input type="text" class="form-control" id="namecompony_editmodal" disabled="disabled" placeholder="">
+            </div>
+            <div class="col-lg-3 col-lg-offset-2 mb-3">
+                <label class="control-label"> سازمان </label>
+                <input type="text" disabled="disabled" class="form-control" id="nameorginzation_editmodal">
+            </div>
+            <div class="col-lg-3 col-lg-offset-2 mb-3">
+                <label class="control-label"> تلفن </label>
+                <input type="text" disabled="disabled" class="form-control " id="telephon_editmodal" >
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-lg-3 col-lg-offset-2 mb-3">
+                <label class="control-label"> آدرس </label>
+                <input type="text" disabled="disabled" class="form-control" id="addres_editmodal" placeholder="">
+            </div>
+            <div class="col-lg-3 col-lg-offset-2 mb-3">
+                <label class="control-label"> کد پستی </label>
+                <input type="text" disabled="disabled" class="form-control" id="codeposti_editmodal" placeholder="" onkeypress="return onlyNumberKey(event)">
+            </div>
+            <div class="col-lg-3 col-lg-offset-2 mb-3">
+                <label class="control-label"> فکس </label>
+                <input type="text" disabled="disabled" class="form-control" id="fax_editmodal" placeholder=" " onkeypress="return onlyNumberKey(event)">
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-success">دخیره</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+
+}

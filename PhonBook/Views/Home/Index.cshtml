@@ -1,0 +1,472 @@
+﻿@model Basemodel
+@{
+    ViewData["Title"] = "دفتر تلفن هیکو";
+}
+@section pre{
+
+}
+<input hidden id="status" value="@Model.Status_Page" />
+<div class="row">
+    <div class="container-fluid">
+        <div class="">
+            <a id="testbt" asp-controller="Home" asp-action="Index" style="background-color: #FFD180;"
+                class="btn btn-outline-light btn-sm btn-responsive mt-1 "><i class="bi bi-arrow-clockwise"></i></a>
+            <a type="button" class="btn  btn-outline-dark   btn-responsive mt-1" style="background-color: #00C853;"
+                data-toggle="modal" data-target="#AddContact">افزودن مخاطب </a>
+            <a type="button" class="btn btn-outline-light mt-1" style="background-color: #0091EA;" id="Contacts">لیست
+                مخاطبین </a>
+            <a type="button" class="btn   btn-outline-dark btn-responsive mt-1" style="background-color: #00C853;"
+                data-toggle="modal" data-target="#addgrop">افرودن گروه</a>
+            <a type="button" class="btn btn-outline-light  btn-responsive  mt-1" style="background-color: #0091EA;"
+                id="grop"> لیست گروه ها </a>
+        </div>
+    </div>
+</div>
+<div class="row  mt-2 mb-2">
+    <div class="row " id="list_contact">
+        <section class=" p-3">
+            <div class="navbar rounded-2   " style="background-color: rgb(236, 232, 232);" dir="rtl">
+                <div class="container-fluid ">
+                    <div>
+                        <div class="d-inline-flex text-black">مخاطبین </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <partial name="_ContactsSummery" model="@Model" />
+    </div>
+    <div id="list_grop" class="row " style="display:none">
+        <section class=" p-3">
+            <div class="navbar rounded-2   " style="background-color: rgb(236, 232, 232);" dir="rtl">
+                <div class="container-fluid ">
+                    <div>
+                        <div class="d-inline-flex text-black" href="">گروه ها </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <partial name="_GropsSummery" model="@Model" />
+    </div>
+</div>
+</div>
+
+<!-- Modal Add Grop -->
+<div class="modal fade" id="addgrop" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">افرودن گروه </h5>
+                <button type="button" class="close  btn-close-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @await Component.InvokeAsync("AddGrop")
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Add Contact -->
+<div id="AddContact" class="modal fade" itabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">افرودن مخاطب </h5>
+                <button type="button" class="close  btn-close-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @await Component.InvokeAsync("AddCoantact")
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+
+<script>
+    var flag = document.getElementById("status").value;
+    //console.log(flag);
+    $(document).ready(function () {
+        //console.log(flag); 
+        $(".required").each(function () {
+            $(this).prepend("<span class='red' style='color:red;'>*</span>");
+        });
+        if (flag == "List_Coantact") {
+            $("#list_contact").show();
+            $("#list_grop").hide();
+        }
+        else if (flag == "Lis_Group") {
+            // console.log("List grop");
+            $("#list_grop").show();
+            $("#list_contact").hide();
+        }
+    });
+    $("#Contacts").click(function () {
+        $("#list_contact").show();
+        $("#list_grop").hide();
+    })
+    $("#grop").click(function () {
+        flag = "Lis_Group";
+        if (flag == "Lis_Group") {
+            console.log("List grop");
+            $("#list_grop").show();
+            $("#list_contact").hide();
+        }
+    });
+    function handle() {
+        var list_contact = document.getElementById("list_contact") //$("#list_contact");
+        var list_grop = document.getElementById("list_grop")  //$("#list_grop");
+        if (list_grop.classList.contains("d-none")) {
+            list_grop.classList.remove("d-none")
+            list_contact.classList.add("d-none")
+        }
+        else {
+            list_contact.classList.add("d-none")
+            list_grop.classList.remove("d-none")
+        }
+    }
+</script>
+<script>
+    function getGroupInformation(groupId) {
+        //console.log("griop Id:"+ groupId);
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            url: "@Url.Action("Get_Group","Grop")",
+            data: { 'id': groupId },
+            success: function (response) {
+                //console.log("response " + response + " " + groupId);
+                if (response != null) {
+                    $('#namegap_editmodal').val(response.name);
+                    $('#namecompony_editmodal').val(response.name_Company);
+                    ('#nameorginzation_editmodal').val(response.organization)
+                    var org = response.organization;
+                    console.log(org);
+                    document.getElementById("nameorginzation_editmodal").value = org;
+                    console.log("org :" + org);
+                    $('#telephon_editmodal').val(response.tell_phone);
+                    $('#addres_editmodal').val(response.address);
+                    $('#codeposti_editmodal').val(response.code_posti);
+                    $('#fax_editmodal').val(response.fax);
+                    $('#idgrop_editmoda').val(response.id);
+                } else {
+                    $('#namegap_editmodal').val() = "";
+                    $('#namecompony_editmodal').val() = "";
+                    $('#nameorginzation_editmodal').val() = "";
+                    $('#telephon_editmodal').val() = "";
+                    $('#addres_editmodal').val() = "";
+                    $('#codeposti_editmodal').val() = "";
+                    $('#fax_editmodal').val() = "";
+                    alert("Something went wrong");
+                }
+            },
+            failure: function (response) {
+                //console.log("response " + response.responseText + " " + groupId);
+                alert("response:" + response.responseText);
+            },
+            error: function (response) {
+                //console.log("response " + response + " " + groupId);
+                alert("response:" + response.responseText);
+            }
+        });
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        var currentrow;
+        String.prototype.toEnglishDigits = function () {
+            var num_dic = {
+                '۰': '0',
+                '۱': '1',
+                '۲': '2',
+                '۳': '3',
+                '۴': '4',
+                '۵': '5',
+                '۶': '6',
+                '۷': '7',
+                '۸': '8',
+                '۹': '9',
+            }
+
+            return parseInt(this.replace(/[۰-۹]/g, function (w) {
+                return num_dic[w]
+            }));
+        }
+        $(".btnn").click(function () {
+            var currentrow_contatc = $(this).closest("tr");
+            id = $(this).val();
+            var namegrop = $(".grop").val();
+            document.getElementById("modal_grop").value = namegrop;
+            // console.log("name grop: " + namegrop);
+            $("#Fullname").val(currentrow_contatc.find("td:eq(1)").text());
+            //console.log($("#Fullname").val(currentrow_contatc.find("td:eq(1)").text()));
+            $("#post").val(currentrow_contatc.find("td:eq(2)").text());
+            $("#Tell_phone").val(currentrow_contatc.find("td:eq(3)").text());
+            $("#Phone_number1").val(currentrow_contatc.find("td:eq(4)").text());
+            $("#Email").val(currentrow_contatc.find("td:eq(5)").text());
+
+            var namegrop = currentrow_contatc.find("td:eq(6)").text()
+            // console.log("Name grop:"+namegrop  );
+
+            document.getElementById("idgp").value = id;
+            document.getElementById("IdContact").value = id;
+
+            var items = document.getElementById("ddlIncidents")
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].text == namegrop) {
+                    //console.log("valu items :"+ items[i].value);
+                    getGroupInformation(items[i].value)
+                }
+            }
+        });
+        $(".editgrop").click(function () {
+            var currentrowgp = $(this).closest("tr");
+            //console.log(currentrow);
+            var name = $(this).val();
+            var id = $(this).val();
+
+            //console.log(id);
+
+            $("#namegrop_modaledit").val(currentrowgp.find("td:eq(1)").text());
+            $("#Organization_modaledit").val(currentrowgp.find("td:eq(2)").text());
+            $("#Tell_phone_modaledit").val(currentrowgp.find("td:eq(3)").text());
+            $("#Address_modaledit").val(currentrowgp.find("td:eq(4)").text());
+            $("#Code_posti_modaledit").val(currentrowgp.find("td:eq(5)").text());
+            $("#Name_Company_modaledit").val(currentrowgp.find("td:eq(6)").text());
+            $("#Fax_modaledit").val(currentrowgp.find("td:eq(7)").text());
+            //console.log($("#Idgropedit").val(id));
+            document.getElementById("Idgropedit").value = id;
+            //console.log("id is :"+document.getElementById("Idgropedit").value);
+        });
+        $("#ddlIncidents").change(function () {
+            var value = $(this).children(":selected").attr("id");
+            console.log(value);
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "@Url.Action("Get_Group","Home")",
+                data: { 'id': value },
+                success: function (response) {
+                    console.log(response);
+                    if (response != null) {
+                        $('#namegap_modalAdd').val(response.name);
+                        $('#namecompony_modalAdd').val(response.name_Company);
+                        $('#nameorginzation_modalAdd').val(response.organization);
+                        $('#telephon_modalAdd').val(response.tell_phone);
+                        $('#addres_modalAdd').val(response.address);
+                        $('#codeposti_modalAdd').val(response.code_posti);
+                        $('#fax_modalAdd').val(response.fax);
+                        $('#idgrop_modalAdd').val(response.id);
+                    } else {
+                        $('#namegap_modalAdd').val() = "";
+                        $('#namecompony_modalAdd').val() = "";
+                        $('#nameorginzation_modalAdd').val() = "";
+                        $('#telephon_modalAdd').val() = "";
+                        $('#addres_modalAdd').val() = "";
+                        $('#codeposti_modalAdd').val() = "";
+                        $('#fax_modalAdd').val() = "";
+                        $('#idgrop_modalAdd').val() = "";
+                        alert("Something went wrong");
+                    }
+                },
+                failure: function (response) {
+                    console.log("response:" + response.responseText);
+                },
+                error: function (response) {
+                    console.log("response:" + response.responseText);
+                }
+            });
+        });
+        $("#ddlIncidents_editmodal").change(function () {
+            var value = $(this).children(":selected").attr("id");
+            //console.log(value);
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "@Url.Action("Get_Group", "Grop")",
+                data: { 'id': value },
+                success: function (response) {
+                    if (response != null) {
+                        $('#namegap_editmodal').val(response.name);
+                        $('#namecompony_editmodal').val(response.name_Company);
+                        $('#nameorginzation_editmodal').val(response.organization)
+                        var orgs =response.organization;
+                        console.log(orgs);
+
+                        $('#telephon_editmodal').val(response.tell_phone);
+                        $('#addres_editmodal').val(response.address);
+                        $('#codeposti_editmodal').val(response.code_posti);
+                        $('#fax_editmodal').val(response.fax);
+                        $('#gropid_editmodal').val(value);
+                    }
+                    else {
+                        $('#namegap_editmodal').val() = "";
+                        $('#namecompony_editmodal').val() = "";
+                        $('#nameorginzation_editmodal').val() = "";
+                        $('#telephon_editmodal').val() = "";
+                        $('#addres_editmodal').val() = "";
+                        $('#codeposti_editmodal').val() = "";
+                        $('#fax_editmodal').val() = "";
+                        alert("Something went wrong");
+                    }
+                },
+                failure: function (response) {
+                    alert("response:" + response.responseText);
+                },
+                error: function (response) {
+                    alert("response:" + response.responseText);
+                }
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#testbt").click(function () {
+            window.location.reload();
+        });
+        $(".deletebtn").click(function () {
+            var id = $(this).val()
+            // console.log(id);
+            Swal.fire({
+                title: 'آیا از حذف مخاطب اطمینان دارید ؟',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: "بازگشت",
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'حذف '
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        url: "@Url.Action("Delete", "Contact")",
+                        data: { 'id': id },
+                        success: (response) => {
+                            window.location.href = '/home';
+                            console.log("Successfully deleted" + response);
+                        },
+                        failure: function (response) {
+                            window.location.href = '/home';
+                            //alert("response:" + response.responseText);
+                        },
+                        error: function (response) {
+                            window.location.href = '/home';
+                            //alert("response:" + response.responseText);
+                        }
+                    })
+                }
+            })
+        });
+    });
+
+</script>
+<script>
+    function find_member(idgrop, success) {
+        console.log("function find_member:" + idgrop);
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            url: "@Url.Action("Find_members", "Grop")",
+            data: { 'id_grop': idgrop },
+            success: (response) => {
+                console.log("response:" + response);
+                success(response);
+
+            },
+            error: function (response) {
+                console.log("response:" + response.responseText);
+                return response;
+            }
+        })
+    }
+    $(".btngropdelet").click(function () {
+        var id = parseInt($(this).val());
+        var idd = document.getElementsByClassName("btngropdelet").value;
+        parseInt(id);
+        console.log("id is :" + idd);
+        //var int_id= parseInt(id);
+
+        // console.log(id+typeof(id));
+        var result = find_member(id, (response) => {
+            if (!response) {
+                Swal.fire({
+                    title: 'آیا از حذف گروه اطمینان دارید ؟',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: "بازگشت",
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'حذف '
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "GET",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            url: "@Url.Action("Delete", "Grop")",
+                            data: { 'id': id },
+                            success: (response) => {
+                                window.location.href = '/home';
+                                console.log("Successfully deleted" + response);
+                            },
+                            failure: function (response) {
+                                window.location.href = '/home';
+                                //alert("response:" + response.responseText);
+                            },
+                            error: function (response) {
+                                window.location.href = '/home';
+                                //alert("response:" + response.responseText);
+                            }
+                        })
+                    }
+                })
+            }
+            else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'اوه.....',
+                    text: 'این گروه دارای مخاطب است ',
+                })
+            }
+        });
+    });
+</script>
+<script>
+    function validateForm(x) {
+        if (x == "") {
+            alert("Name must be filled out");
+            return false;
+        }
+    }
+    //Show input error messages
+    function showError(input, message) {
+        const formControl = input.parentElement;
+        formControl.className = 'form-control error';
+        const small = formControl.querySelector('small');
+        small.innerText = message;
+    }
+
+</script>
+<script>
+    function onlyNumberKey(evt) {
+        // Only ASCII character in that range allowed
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    }
+
+</script>
+
+}

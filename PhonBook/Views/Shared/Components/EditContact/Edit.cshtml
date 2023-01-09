@@ -1,0 +1,125 @@
+﻿@model Vmcontact
+
+
+<!-- Modal edit -->
+<div id="editContact" class="modal fade" itabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">ویرایش اطلاعات  </h5>
+                <button type="button" class="close btn-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row m-0">
+                    <div class="container m-1 col-form-label border-3">
+                        <div>
+                            <a class="btn border-danger btn-close" asp-controller="Home" asp-action="index"> </a>
+                        </div>
+                        <form class="form-control" asp-controller="Contacts" asp-action="Edit" method="post">
+                            <div class="row">
+                                <div class="col-lg-6 col-lg-offset-2 mb-3">
+                                    <label class="control-label"> نام و نام خانوداگی </label>
+                                    <input type="text" asp-for="Fullname" class="form-control border-secondary "
+                                        data-validation="name" required value="@Model.Fullname">
+                                    <span asp-validation-for="@Model.Fullname" class="text-danger"></span>
+                                    <div id="nameAlert"></div>
+                                </div>
+                                <div class="col-lg-6 col-lg-offset-2 mb-3">
+                                    <label class="control-label"> سمت </label>
+                                    <input type="text" asp-for="POST" class="form-control border-secondary"
+                                        data-validation="name" required value="@Model.POST">
+                                    <span asp-validation-for="@Model.POST" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-lg-offset-2 mb-3">
+                                    <label class="control-label"> شماره ثابت </label>
+                                    <input type="text" asp-for="Tell_phone" class="form-control border-secondary"
+                                        data-validation="name" required maxlength="8" dir="ltr"
+                                        value="@Model.Tell_phone">
+                                    <span asp-validation-for="@Model.Tell_phone" class="text-danger"></span>
+
+                                </div>
+                                <div class="col-lg-6 col-lg-offset-2 mb-3">
+                                    <label class="control-label"> تلفن همراه </label>
+                                    <input type="text" asp-for="Phone_number1" class="form-control  border-secondary"
+                                        dir="ltr" maxlength="11" value="@Model.Phone_number1">
+                                    <span asp-validation-for="@Model.Tell_phone" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-lg-offset-2 mb-3">
+                                    <label class="control-label"> ایمیل </label>
+                                    <input type="email" asp-for="Email" class="form-control border-secondary" id="email"
+                                        required value="@Model.Email">
+                                </div>
+                                <div class="col-lg-6 col-lg-offset-2 mb-3 ">
+                                    <label class="control-label"> نام گروه </label>
+                                    <select class="form-control  border-secondary" id="ddlIncidents">
+                                        <option selected>@Model.Name_Grop</option>
+                                        @foreach (PhonBook.Core.Domain.Grops.Grop item in ViewBag.grops)
+                                        {
+                                            <option id="@item.Id" value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                    <input hidden id="gropid" asp-for="gropid" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-lg-3 col-lg-offset-2 mb-3">
+                                    <label class="control-label"> نام گروه </label>
+                                    <input type="text" class="form-control" disabled="disabled" id="namegap"
+                                        placeholder=" ">
+                                </div>
+                                <div class="col-lg-3 col-lg-offset-2 mb-3">
+                                    <label class="control-label"> نام شرکت </label>
+                                    <input type="text" class="form-control" id="namecompony" disabled="disabled"
+                                        placeholder="">
+                                </div>
+                                <div class="col-lg-3 col-lg-offset-2 mb-3">
+                                    <label class="control-label"> سازمان </label>
+                                    <input type="text" disabled="disabled" class="form-control" id="nameorginzation"
+                                        placeholder=" ">
+                                </div>
+                                <div class="col-lg-3 col-lg-offset-2 mb-3">
+                                    <label class="control-label"> تلفن </label>
+                                    <input type="text" disabled="disabled" class="form-control " id="telephon"
+                                        placeholder="   ">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-lg-3 col-lg-offset-2 mb-3">
+                                    <label class="control-label"> آدرس </label>
+                                    <input type="text" disabled="disabled" class="form-control" id="addres"
+                                        placeholder="">
+                                </div>
+                                <div class="col-lg-3 col-lg-offset-2 mb-3">
+                                    <label class="control-label"> کد پستی </label>
+                                    <input type="text" disabled="disabled" class="form-control" id="codeposti"
+                                        placeholder=" ">
+                                </div>
+                                <div class="col-lg-3 col-lg-offset-2 mb-3">
+                                    <label class="control-label"> فکس </label>
+                                    <input type="text" disabled="disabled" class="form-control" id="fax"
+                                        placeholder=" ">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button type="submit" class="btn btn-success">دخیره</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+}

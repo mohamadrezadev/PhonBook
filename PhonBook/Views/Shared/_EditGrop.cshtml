@@ -1,0 +1,67 @@
+@model Basemodel
+@section pre{
+
+}
+<div class="container">
+    <form class="form-control" asp-controller="Grop" asp-action="Edit" method="post">
+        <input name="id" id="Idgropedit"  hidden />
+        <div class="col-form-label border-1">
+            افزودن گروه:
+        </div>
+        <div class="row mb-3">
+            <div class="col-lg-6 ">
+                <label class="control-label required"> نام گروه : </label>
+                <input type="text"   name="Name" id="namegrop_modaledit" class="form-control  border-secondary" required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')">
+                <span class="text-danger"></span>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label required"> نام شرکت : </label> 
+                <input type="text"   name="Name_Company" id="Name_Company_modaledit" required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')"
+                    class="form-control  border-secondary" >
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-lg-6">
+                <label class="control-label required"> سازمان : </label>
+                <input type="text"  name="Organization" id="Organization_modaledit"
+                    class="form-control  border-secondary" required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')">
+                <span class="text-danger"></span>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label required"> تلفن : </label>
+                <input type="tel"  name="Tell_phone" id="Tell_phone_modaledit" class="form-control  border-secondary" onkeypress="return onlyNumberKey(event)"
+                    data-validation="number"  id="name" placeholder=" 3145552001 " dir="ltr" value="31" maxlength="8" required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')">
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-lg-6">
+                <label class="control-label required"> آدرس : </label>
+                <input type="text"  name="Address" id="Address_modaledit" class="form-control  border-secondary"
+                    required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')">
+                <span class="text-danger"></span>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label required"> کد پستی : </label>
+                <input type="tel"  name="Code_posti" id="Code_posti_modaledit" class="form-control  border-secondary" onkeypress="return onlyNumberKey(event)"
+                    data-validation="number" required dir="ltr" maxlength="10" placeholder="8178188718" required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')">
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-lg-6">
+                <label class="control-label siz required" > فکس:</label>
+                <input type="tel"  name="Fax" id="Fax_modaledit" class="form-control  border-secondary" onkeypress="return onlyNumberKey(event)"
+                    data-validation-allowing="number" required maxlength="8" dir="ltr" placeholder="" required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')">
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success">دخیره</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+        </div>
+    </form>
+</div>
+@section Scripts{
+}

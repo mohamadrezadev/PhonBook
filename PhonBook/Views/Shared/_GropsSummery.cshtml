@@ -1,0 +1,118 @@
+﻿@model Basemodel
+   <div class="col-lg-4 col-md-12 mx-0 mx-sm-2  ">
+
+        <form asp-controller="Home" asp-action="Search_Group" class="form-inline my-2 my-lg-0 d-flex   responsive"
+            method="get">
+            <input name="Name_Grop" class="form-control" type="search" placeholder="جستجو  گروه " aria-label="Search">
+            <button class="btn  mx-1 btn-outline-light" style="background-color:#FF3D00;" type="submit">جستجو
+            </button>
+        </form>
+    </div>
+<div class="row">
+
+    <div class="container p-3">
+
+        <div class="container-fluid ">
+            <div class="container table-responsive-lg">
+                <table class="table  table-hover table-responsive-lg ">
+                    <thead class="text-light  " style="background-color: #8E24AA;">
+                        <tr>
+                            <th>ردیف</th>
+                            <th>نام گروه</th>
+                            <th>نام سازمان</th>
+                            <th>تلفن </th>
+                            <th>آدرس</th>
+                            <th> </th>
+                            <th> </th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="table-responsive">
+                        @if (Model.VmGrops.Any())
+                        {
+                            int count = 1;
+                            @foreach (var item in Model.VmGrops)
+                            {
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Organization</td>
+                                    <td>@item.Tell_phone</td>
+                                    <td>@item.Address</td>
+                                    <td hidden>@item.Code_posti</td>
+                                    <td hidden>@item.Name_Company</td>
+                                    <td hidden>@item.Fax</td>
+                                    <td hidden>@item.id</td>
+                                    <td>
+                                        <button value="@item.id" class="btn  btn-outline-light editgrop" style="background-color: #FFAB00;" 
+                                            data-toggle="modal" data-target="#editgrop">
+                                            ویرایش
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button  value="@item.id" style="background-color: #B71C1C;" class="btn btn-outline-light btngropdelet">
+                                            حذف
+                                        </button>
+                                    </td>
+                                </tr>
+                                count++;
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+
+                                <td>
+                                    <div class="border-warning">
+                                        اطلاعاتی وجود ندارد
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    <tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editgrop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> فرم ویرایش </h5>
+                <button type="button" class="btn-close-white" data-dismiss="modal" dir="" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="row">
+                <partial name="_EditGrop" />
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+<script>
+    $(".btngropdelet").click(function(){
+        var idgrop=$(this).val();
+        var result;
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            url: "@Url.Action("Find_members", "Grop")",
+                    data: { 'id': idgrop },
+                    success: (response)=> {
+                        result.response;
+                        console.log(response);
+                    },
+                    failure: function (response) {
+                        alert("response:" + response.responseText);
+                        },
+                    error: function (response) {
+                        alert("response:" + response.responseText);
+                    }
+        })
+    });
+</script>
+}

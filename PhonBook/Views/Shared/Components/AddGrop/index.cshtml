@@ -1,0 +1,65 @@
+﻿@model Basemodel
+<div class="row">
+    <div class="container">
+        <form class="form-control" asp-controller="Grop" asp-action="Create" method="post">
+            <div class="col-form-label border-1">
+                افزودن گروه
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-6 ">
+                    <label class="control-label required" > نام گروه   :  </label>
+                    <input type="text" name="Name" class="form-control  border-secondary" required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')">
+                    <span  class="text-danger"></span>
+                </div>
+                <div class="col-lg-6">
+                    <label class="control-label required"> نام شرکت :    </label>
+                    <input type="text" name="Name_Company" class="form-control  border-secondary" required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')"> 
+                    <span asp-validation-for="@Model.vmGrop.Name_Company" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-6">
+                    <label class="control-label required"> سازمان  :   </label>
+                    <input type="text" name="Organization" class="form-control  border-secondary" required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')">
+                    <span  class="text-danger"></span>
+                </div>
+                <div class="col-lg-6">
+                    <label class="control-label required"> تلفن  :   </label>
+                    <input type="tel" name="Tell_phone" class="form-control  border-secondary" data-validation="number" required id="name" placeholder="45552001" dir="ltr" value="" maxlength="8" oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')"
+                    onkeypress="return onlyNumberKey(event)">
+                    <span asp-validation-for="vmGrop.Tell_phone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-6">
+                    <label class="control-label required"> آدرس :   </label>
+
+                    <input type="text" name="Address" class="form-control  border-secondary" required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')">
+                    <span asp-validation-for="@Model.vmGrop.Address" class="text-danger"></span>
+
+                </div>
+                <div class="col-lg-6">
+                    <label class="control-label required"> کد پستی  :  </label>
+
+                    <input type="tel" name="Code_posti" class="form-control  border-secondary" data-validation="number" dir="ltr"  required maxlength="10" placeholder="8178188718" oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')" onkeypress="return onlyNumberKey(event)">
+                    <span asp-validation-for="@Model.vmGrop.Code_posti" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-6">
+                    <label class="control-label required" > فکس:</label>
+
+                    <input type="tel" name="Fax" class="form-control  border-secondary" data-validation-allowing="number" dir="ltr" required maxlength="8" placeholder="46552001" oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('') "onkeypress="return onlyNumberKey(event)">
+                    <span asp-validation-for="@Model.vmGrop.Fax" class="text-danger"></span>
+
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">دخیره</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">بازگشت</button> 
+                </div>
+        </form>
+
+    </div>
+</div>

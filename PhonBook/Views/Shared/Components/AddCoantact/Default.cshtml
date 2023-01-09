@@ -1,0 +1,107 @@
+﻿@model Basemodel;
+@{
+}
+<div class="row ">
+    <div class="container col-form-label ">
+        <form class="form-floating" asp-controller="Contact" asp-action="Add_Contact" method="post">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-2 mb-3">
+                    <label class="control-label required"> نام و نام خانوداگی : </label>
+                    <input type="text" id="Fullname" name="Fullname" class="form-control border-secondary " oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')" data-validation="name" required>
+                    <span asp-validation-for="@Model.vmcontact.Fullname" class="text-danger"></span>
+                    <div id="nameAlert"></div>
+                </div>
+                <div class="col-lg-6 col-lg-offset-2 mb-3">
+                    <label class="control-label required"> سمت :</label>
+                    <input type="text" name="POST" class="form-control border-secondary" data-validation="name" required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')">
+                    <span asp-validation-for="@Model.vmcontact.POST" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-2 mb-3">
+                    <label class="control-label required "> شماره ثابت :</label>
+                    <input type="text" name="Tell_phone" class="form-control  border-secondary formattedNumberField" maxlength="8" value="" dir="ltr" required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')"
+                    onkeypress="return onlyNumberKey(event)"/>
+                    <span asp-validation-for="@Model.vmcontact.Tell_phone" class="text-danger"></span>
+
+                </div>
+                <div class="col-lg-6 col-lg-offset-2 mb-3">
+                    <label class="control-label"> تلفن همراه : </label>
+                    <input type="text" name="Phone_number1" class="form-control  border-secondary " maxlength="11" value="09" dir="ltr"
+                    onkeypress="return onlyNumberKey(event)"  />
+                    <span asp-validation-for="@Model.vmcontact.Tell_phone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-2 mb-3">
+                    <label class="control-label"> ایمیل :</label>
+                    <input type="email" name="Email" class="form-control border-secondary" placeholder="test@yahoo.com">
+                </div>
+                <div class="col-lg-6 col-lg-offset-2 mb-3 ">
+                    <label class="control-label"> نام گروه :</label>
+                    <select class="form-control  border-secondary" id="ddlIncidents" required >
+                        <option selected>انتخاب گروه :</option>
+                        @{
+                            foreach (PhonBook.Core.Domain.Grops.Grop item in Model.Groups)
+                            {
+                                <option id="@item.Id" value="@item.Id">@item.Name</option>
+                            }
+                        }
+                    </select>
+                    <input hidden name="gropid" id="idgrop_modalAdd" />
+                </div>
+
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-lg-3 col-lg-offset-2 mb-3">
+                    <label class="form-label "> نام گروه  :   </label>
+                    <input type="text" class="form-control " disabled="disabled" id="namegap_modalAdd" placeholder=" ">
+                </div>
+                <div class="col-lg-3 col-lg-offset-2 mb-3">
+                    <label class="control-label"> نام شرکت :  </label>
+                    <input type="text" class="form-control" id="namecompony_modalAdd" disabled="disabled" placeholder="">
+                </div>
+                <div class="col-lg-3 col-lg-offset-2 mb-3">
+                    <label class="control-label">  سازمان  : </label>
+                    <input type="text" disabled="disabled" class="form-control" id="nameorginzation_modalAdd" placeholder=" ">
+                </div>
+                <div class="col-lg-3 col-lg-offset-2 mb-3">
+                    <label class="control-label">  تلفن :  </label>
+                    <input type="text" disabled="disabled" class="form-control " id="telephon_modalAdd" placeholder="" maxlength="8">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-3 col-lg-offset-2 mb-3">
+                    <label class="control-label"> آدرس :</label>
+                    <input type="text" disabled="disabled" class="form-control" id="addres_modalAdd" placeholder="">
+                </div>
+                <div class="col-lg-3 col-lg-offset-2 mb-3">
+                    <label class="control-label"> کد پستی  :  </label>
+                    <input type="text" disabled="disabled" class="form-control" id="codeposti_modalAdd" placeholder=" ">
+                </div>
+                <div class="col-lg-3 col-lg-offset-2 mb-3">
+                    <label class="control-label"> فکس :  </label>
+                    <input type="text" disabled="disabled" class="form-control" id="fax_modalAdd" placeholder=" ">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">دخیره</button>
+                    <button type="submit" class="btn btn-danger">بازگشت</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+<script>
+    $('#Fullname').on('input', function() {
+	var input=$(this);
+	var is_name=input.val();
+	if(is_name){input.removeClass("invalid").addClass("valid");}
+	else{input.removeClass("valid").addClass("invalid");}
+});
+</script>
+}

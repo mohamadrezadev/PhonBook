@@ -1,0 +1,136 @@
+﻿@model List<Vmcontact>
+@section pre
+    {
+}
+<section class="container-fluid">
+    <div class="row mt-2">
+        <div class="container table-responsive-lg">
+            <table class="table  table-hover table-responsive-lg">
+                <thead class="bg-primary thead-dark ">
+                    <tr class="responsive ">
+                        <th>ردیف </th>
+                        <th>نام و نام خانوادگی</th>
+                        <th>سمت </th>
+                        <th>شماره ثابت</th>
+                        <th>تلفن همراه  </th>
+                        <th>ایمیل </th>
+                        <th> گروه</th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody class="table-responsive">
+                    @if (Model.Any())
+                    {
+                        int count = 1;
+                        @foreach (var item in Model)
+                        {
+                            <tr class="responsive">
+                                <td>@count</td>
+                                <td> @item.Fullname </td>
+                                <td> @item.POST   </td>
+                                <td> @item.Tell_phone   </td>
+                                <td>@item.Phone_number1</td>
+                                <td>@item.Email</td>
+                                <td>@item.Name_Grop</td>
+                                <td>
+                                    @*<a asp-controller="Contacts" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">
+                            ویرایش
+                            </a>*@
+                                </td>
+                                <td>
+                                    @* <a asp-controller="Contacts" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                            حذف
+                            </a>*@
+                                </td>
+                            </tr>
+                            count++;
+                        }
+                    }
+
+                    else
+                    {
+                        <tr>
+                            <td>
+                                اطلاعاتی وجود ندارد
+                            </td>
+                        </tr>
+                    }
+
+                <tbody>
+            </table>
+
+        </div>
+    </div>
+</section>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="row m-0">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal edit -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $("#ddlIncidents").change(function () {
+            var value = $(this).children(":selected").attr("id");
+            console.log(value);
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "@Url.Action("Get_Group", "Groups")",
+                data: { 'id': value },
+                success: function (response) {
+                    if (response != null) {
+                        $('#namegap').val(response.name);
+                        $('#namecompony').val(response.name_Company);
+                        $('#nameorginzation').val(response.organiztion);
+                        $('#telephon').val(response.tell_phone);
+                        $('#addres').val(response.address);
+                        $('#codeposti').val(response.code_posti);
+                        $('#fax').val(response.fax);
+                        $('#idgrop').val(response.id);
+                    } else {
+                        $('#namegap').val() = "";
+                        $('#namecompony').val() = "";
+                        $('#nameorginzation').val() = "";
+                        $('#telephon').val() = "";
+                        $('#addres').val() = "";
+                        $('#codeposti').val() = "";
+                        $('#fax').val() = "";
+                        alert("Something went wrong");
+                    }
+                },
+                failure: function (response) {
+                    alert("response:"+ response.responseText);
+                },
+                error: function (response) {
+                    alert( "response:"+response.responseText);
+                }
+
+
+
+
+            });
+
+        });
+
+    </script>
+}
