@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Project\\PhonBook\\phonbook\\PhonBook.csproj": {}
+    "F:\\Project\\PhonBook\\PhonBook\\PhonBook.csproj": {}
   },
   "projects": {
     "F:\\Project\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj": {
@@ -234,14 +234,14 @@
         }
       }
     },
-    "F:\\Project\\PhonBook\\phonbook\\PhonBook.csproj": {
+    "F:\\Project\\PhonBook\\PhonBook\\PhonBook.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Project\\PhonBook\\phonbook\\PhonBook.csproj",
+        "projectUniqueName": "F:\\Project\\PhonBook\\PhonBook\\PhonBook.csproj",
         "projectName": "PhonBook",
-        "projectPath": "F:\\Project\\PhonBook\\phonbook\\PhonBook.csproj",
+        "projectPath": "F:\\Project\\PhonBook\\PhonBook\\PhonBook.csproj",
         "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-        "outputPath": "F:\\Project\\PhonBook\\phonbook\\obj\\",
+        "outputPath": "F:\\Project\\PhonBook\\PhonBook\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

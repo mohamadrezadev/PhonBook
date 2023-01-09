@@ -2221,11 +2221,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "f:\\Project\\PhonBook\\PhonBook.Api\\PhonBook.Api.csproj",
+      "projectUniqueName": "F:\\Project\\PhonBook\\PhonBook.Api\\PhonBook.Api.csproj",
       "projectName": "PhonBook.Api",
-      "projectPath": "f:\\Project\\PhonBook\\PhonBook.Api\\PhonBook.Api.csproj",
+      "projectPath": "F:\\Project\\PhonBook\\PhonBook.Api\\PhonBook.Api.csproj",
       "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-      "outputPath": "f:\\Project\\PhonBook\\PhonBook.Api\\obj\\",
+      "outputPath": "F:\\Project\\PhonBook\\PhonBook.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2247,14 +2247,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "f:\\Project\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj": {
-              "projectPath": "f:\\Project\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj"
+            "F:\\Project\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj": {
+              "projectPath": "F:\\Project\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj"
             },
-            "f:\\Project\\PhonBook\\PhonBook.Framework\\PhonBook.Framework.csproj": {
-              "projectPath": "f:\\Project\\PhonBook\\PhonBook.Framework\\PhonBook.Framework.csproj"
+            "F:\\Project\\PhonBook\\PhonBook.Framework\\PhonBook.Framework.csproj": {
+              "projectPath": "F:\\Project\\PhonBook\\PhonBook.Framework\\PhonBook.Framework.csproj"
             },
-            "f:\\Project\\PhonBook\\PhonBook.infra.Data.sqlserver\\PhonBook.infra.Data.sqlserver.csproj": {
-              "projectPath": "f:\\Project\\PhonBook\\PhonBook.infra.Data.sqlserver\\PhonBook.infra.Data.sqlserver.csproj"
+            "F:\\Project\\PhonBook\\PhonBook.infra.Data.sqlserver\\PhonBook.infra.Data.sqlserver.csproj": {
+              "projectPath": "F:\\Project\\PhonBook\\PhonBook.infra.Data.sqlserver\\PhonBook.infra.Data.sqlserver.csproj"
             }
           }
         }
