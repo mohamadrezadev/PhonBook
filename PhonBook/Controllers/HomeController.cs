@@ -24,16 +24,16 @@ public class HomeController : Controller
     ///</summary>
     public async Task<IActionResult> Index(string Status = "List_Coantact", string Message = null)
     {
-        _logger.LogInformation("Called Index endpoint");
+        _logger.LogInformation("Called Index action and get status "+Status);
         var result = new Basemodel();
         var vm = new vm();
         var List_grop = new List<VmGrop>();
         var List_Contacts = new List<Vmcontact>();
-        var Grops = await _GroupRepository.GetAllAsync();
+        var Grops =await  _GroupRepository.GetAllAsync();
         _logger.LogInformation($"Grops count is  :{Grops.Count}");
-        var Contacts = await _ContactRepository.GetAllAsync();
+        var Contacts =  _ContactRepository.GetAll();
         _logger.LogInformation($"Contact count is  :{Contacts.Count}");
-        Contacts.ForEach(contact =>
+        Contacts.ForEach( contact =>
         {
             var vmContact = new Vmcontact()
             {
@@ -182,7 +182,7 @@ public class HomeController : Controller
         {
 
             var Contact = await _ContactRepository.find_Contact_by_name_Async(Fullname);
-            var Groups = _GroupRepository.GetAll();
+            var Groups =await _GroupRepository.GetAllAsync();
             if (Contact != null)
             {
                 var vmContact = new Vmcontact()
@@ -196,6 +196,12 @@ public class HomeController : Controller
                     gropid = Contact.Group_Id,
                     Tell_phone = Contact.Tell_phone,
                 };
+                if(Contact.Group_Id!=0){
+                     var grop=await _GroupRepository.FindByIdAsync(Contact.Group_Id);
+                     if(grop!=null){
+                        vmContact.Name_Grop=grop.Name;
+                     }
+                }
                 result.Vmcontacts.Add(vmContact);
 
             }

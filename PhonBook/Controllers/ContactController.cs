@@ -9,11 +9,13 @@ namespace PhonBook.Controllers
     {
         private readonly IContactRepository _ContactRepository;
         private IGroupRepository _GroupRepository;
+       
 
         public ContactController(IContactRepository contactRepository, IGroupRepository groupRepository)
         {
             _ContactRepository = contactRepository;
             _GroupRepository = groupRepository;
+            
         }
         /// <summary>
         /// Create a new Contact object
@@ -90,6 +92,7 @@ namespace PhonBook.Controllers
             }
             try
             {
+                
                 var editconact = new Contact()
                 {
                     Email = model.Email,
@@ -100,8 +103,12 @@ namespace PhonBook.Controllers
                     Tell_phone = model.Tell_phone,
                     Group_Id = model.gropid,
                     Id=model.Id,
+                    
                 };
-                var c= await _ContactRepository.FindByIdAsync(model.Id);
+                var grop= await _GroupRepository.FindByNameAsync(model.Name_Grop);
+                if(grop!=null){
+                    editconact.Group_Id=grop.Id;
+                }
                 _ContactRepository.Update(model.Id, editconact);
                 return RedirectToAction("index", "Home");
             }
