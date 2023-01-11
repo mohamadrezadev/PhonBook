@@ -1,12 +1,10 @@
 @model Basemodel
-
-
+<input hidden id="gropnamecontact" value="@Model.vmcontact.gropid"/>
 <div class="row m-0">
-    <form class="form-control" action="Contact/Update" method="post">
+    <form class="form-control" asp-controller="Contact" asp-action="Update"  method="post">
         <div class="row">
             <div class="col-lg-6 col-lg-offset-2 mb-3">
                 <label class="control-label required"> نام و نام خانوداگی </label>
-                @* <input type="text"  name="Fullname" id="Fullname" class="form-control border-secondary " required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')" />  *@
                 <input type="text" id="Fullname" name="Fullname" class="form-control border-secondary " required oninvalid="this.setCustomValidity('این فیلد نمیتواند خالی باشد ')" oninput="setCustomValidity('')" data-validation="name" > 
                 <span class="text-danger"></span>
                 <div id="nameAlert"></div>
@@ -34,12 +32,18 @@
         <div class="row">
             <div class="col-lg-6 col-lg-offset-2 mb-3">
                 <label class="control-label"> ایمیل </label>
-                <input type="email" name="Email" id="Email" data-validation="" class="form-control border-secondary" id="email" >
+                <input type="email" name="Email" id="Email"  data-validation="" class="form-control border-secondary" id="email" >
             </div>
             <div class="col-lg-6 col-lg-offset-2 mb-3 ">
                 <label class="control-label"> نام گروه </label>
                 <select class="form-control  border-secondary" id="ddlIncidents_editmodal">
-                    <option selected id="modal_grop"> انتخاب گروه</option>
+                    @if (Model.vmcontact.Name_Grop!=null)
+                    {
+                        <option class="selceltitem" selected id="modal_grop"> @Model.vmcontact.Name_Grop </option>
+                    }
+                    else{
+                        <option class="selceltitem" selected id="modal_grop"> انتخاب گروه</option>
+                    }
                     @foreach (var item in Model.Groups)
                     {
                         <option id="@item.Id" value="@item.Id"> @item.Name</option>
@@ -47,12 +51,13 @@
                 </select>
                 <input  hidden id="idgp" name="gropid" />
                 <input  hidden id="IdContact" name="Id" />
+                <input  hidden id="namegrop" name="Name_Grop" />
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-lg-3 col-lg-offset-2 mb-3">
                 <label class="control-label"> نام گروه </label>
-                <input type="text" class="form-control" disabled="disabled" id="namegap_editmodal" placeholder=" ">
+                <input type="text" class="form-control" disabled="disabled" id="namegap_editmodal" name="Name_Grop" placeholder=" ">
             </div>
             <div class="col-lg-3 col-lg-offset-2 mb-3">
                 <label class="control-label"> نام شرکت </label>
@@ -82,7 +87,7 @@
             </div>
         </div>
         <div class="row">
-            <button type="submit" class="btn btn-success">دخیره</button>
+            <button type="submit" class="btn btn-success">ذخیره</button>
         </div>
     </form>
 </div>

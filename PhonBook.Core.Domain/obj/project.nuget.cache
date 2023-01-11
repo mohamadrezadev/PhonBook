@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QcU+1sZH3OxN0cQ/7pwlK9RvtewiQki6koHjuLKfUdNkKODqKM0wymP8C6oSf9VYrk868jDthBzOm/9IDOnqbg==",
+  "dgSpecHash": "ThbDfT2vued+9pmNfwONw/W8sWAOHTIWpenIQUUecPlXy/Co3DztQM3uDzXdOGY/FeXX8W4bTK8irFw0/Ws8QQ==",
   "success": true,
-  "projectFilePath": "F:\\Project\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj",
+  "projectFilePath": "F:\\Project\\edit\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\moham\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.12\\microsoft.entityframeworkcore.6.0.12.nupkg.sha512",
     "C:\\Users\\moham\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.12\\microsoft.entityframeworkcore.abstractions.6.0.12.nupkg.sha512",

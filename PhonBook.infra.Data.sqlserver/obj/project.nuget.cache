@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "057PMaw+KpT6MGgewcu9I0awVAaYSNHbIlEegSWnISViJOLd1KLXl/s3+vzZlHDBEvw6VLJylILeVNnjc6mDjw==",
+  "dgSpecHash": "zEkgK0l8eMUfiAecqr6WjziPvsx9/NMeVNYU3Upgd8S6STkI27fnihN/LeFFCTZJHl2EmRN2SkHDSbPOSFyvSA==",
   "success": true,
-  "projectFilePath": "F:\\Project\\PhonBook\\PhonBook.infra.Data.sqlserver\\PhonBook.infra.Data.sqlserver.csproj",
+  "projectFilePath": "F:\\Project\\edit\\PhonBook\\PhonBook.infra.Data.sqlserver\\PhonBook.infra.Data.sqlserver.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\moham\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\moham\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

@@ -11,8 +11,9 @@ namespace PhonBook.Core.Domain.Grops
     public interface IGroupRepository
     {
         Task Add(Grop group);
-        void Update(int id, Grop group);
+        Task<int> Update(int id, Grop group);
         void Delete(int id);
+        Task<int> DeleteAsync(int Id);
         Task<List<Grop>> GetAllAsync();
         List<Grop> GetAll();
         Task<Grop> Create(Grop group);

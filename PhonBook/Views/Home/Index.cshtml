@@ -9,7 +9,7 @@
 <div class="row">
     <div class="container-fluid">
         <div class="">
-            <a id="testbt" asp-controller="Home" asp-action="Index" style="background-color: #FFD180;"
+            <a id="testbt" asp-controller="Home" asp-action="Index" asp-route-Status="List_Coantact" style="background-color: #FFD180;"
                 class="btn btn-outline-light btn-sm btn-responsive mt-1 "><i class="bi bi-arrow-clockwise"></i></a>
             <a type="button" class="btn  btn-outline-dark   btn-responsive mt-1" style="background-color: #00C853;"
                 data-toggle="modal" data-target="#AddContact">افزودن مخاطب </a>
@@ -89,14 +89,13 @@
 
 <script>
     var flag = document.getElementById("status").value;
-    //console.log(flag);
     $(document).ready(function () {
-        //console.log(flag); 
         $(".required").each(function () {
             $(this).prepend("<span class='red' style='color:red;'>*</span>");
         });
         if (flag == "List_Coantact") {
             $("#list_contact").show();
+
             $("#list_grop").hide();
         }
         else if (flag == "Lis_Group") {
@@ -143,6 +142,8 @@
                 //console.log("response " + response + " " + groupId);
                 if (response != null) {
                     $('#namegap_editmodal').val(response.name);
+                    $('#namegrop').val(response.name);
+                   // console.log($('#namegrop').val(response.name));
                     $('#namecompony_editmodal').val(response.name_Company);
                     ('#nameorginzation_editmodal').val(response.organization)
                     var org = response.organization;
@@ -154,6 +155,7 @@
                     $('#codeposti_editmodal').val(response.code_posti);
                     $('#fax_editmodal').val(response.fax);
                     $('#idgrop_editmoda').val(response.id);
+                
                 } else {
                     $('#namegap_editmodal').val() = "";
                     $('#namecompony_editmodal').val() = "";
@@ -197,11 +199,11 @@
                 return num_dic[w]
             }));
         }
+       
         $(".btnn").click(function () {
             var currentrow_contatc = $(this).closest("tr");
             id = $(this).val();
             var namegrop = $(".grop").val();
-            document.getElementById("modal_grop").value = namegrop;
             // console.log("name grop: " + namegrop);
             $("#Fullname").val(currentrow_contatc.find("td:eq(1)").text());
             //console.log($("#Fullname").val(currentrow_contatc.find("td:eq(1)").text()));
@@ -209,13 +211,16 @@
             $("#Tell_phone").val(currentrow_contatc.find("td:eq(3)").text());
             $("#Phone_number1").val(currentrow_contatc.find("td:eq(4)").text());
             $("#Email").val(currentrow_contatc.find("td:eq(5)").text());
-
-            var namegrop = currentrow_contatc.find("td:eq(6)").text()
-            // console.log("Name grop:"+namegrop  );
-
+            var namegrop = currentrow_contatc.find("td:eq(6)").text();
+            var idgropselected = currentrow_contatc.find("td:eq(7)").text();
+            getGroupInformation(idgropselected);
+            console.log("id grop "+ idgropselected);
+            console.log("namegrop "+ namegrop);
+            document.getElementById("modal_grop").innerText=namegrop
+            $("modal_grop").text(namegrop);
             document.getElementById("idgp").value = id;
-            document.getElementById("IdContact").value = id;
 
+            document.getElementById("IdContact").value = id;
             var items = document.getElementById("ddlIncidents")
             for (var i = 0; i < items.length; i++) {
                 if (items[i].text == namegrop) {
@@ -229,9 +234,7 @@
             //console.log(currentrow);
             var name = $(this).val();
             var id = $(this).val();
-
             //console.log(id);
-
             $("#namegrop_modaledit").val(currentrowgp.find("td:eq(1)").text());
             $("#Organization_modaledit").val(currentrowgp.find("td:eq(2)").text());
             $("#Tell_phone_modaledit").val(currentrowgp.find("td:eq(3)").text());
@@ -295,11 +298,12 @@
                 success: function (response) {
                     if (response != null) {
                         $('#namegap_editmodal').val(response.name);
+                        console.log("namefrop"+ response.name);
+                        document.getElementById("namegrop").value=response.name;
                         $('#namecompony_editmodal').val(response.name_Company);
                         $('#nameorginzation_editmodal').val(response.organization)
                         var orgs =response.organization;
                         console.log(orgs);
-
                         $('#telephon_editmodal').val(response.tell_phone);
                         $('#addres_editmodal').val(response.address);
                         $('#codeposti_editmodal').val(response.code_posti);
@@ -330,7 +334,7 @@
 <script>
     $(document).ready(function () {
         $("#testbt").click(function () {
-            window.location.reload();
+           window.location.href = '/home';
         });
         $(".deletebtn").click(function () {
             var id = $(this).val()
@@ -417,16 +421,19 @@
                             url: "@Url.Action("Delete", "Grop")",
                             data: { 'id': id },
                             success: (response) => {
-                                window.location.href = '/home';
                                 console.log("Successfully deleted" + response);
+                                window.location.href = '/home/?Status=Lis_Group';
+                              // localhost:7176/?Status=Lis_Group
                             },
                             failure: function (response) {
-                                window.location.href = '/home';
-                                //alert("response:" + response.responseText);
+                               // window.location.href = '/home';
+                                console.log("Erorr deleted" + response);
+                               console.log ("response:" + response.responseText);
                             },
                             error: function (response) {
-                                window.location.href = '/home';
-                                //alert("response:" + response.responseText);
+                                console.log("eror "+ response.responseText)
+                                window.location.href = '/home/?Status=Lis_Group'; 
+                                //localhost:7176/?Status=Lis_Group
                             }
                         })
                     }
