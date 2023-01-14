@@ -11,8 +11,8 @@ using PhonBook.infra.Data.sqlserver.Common;
 namespace PhonBook.infra.Data.sqlserver.Migrations
 {
     [DbContext(typeof(ApplicationDbcontext))]
-    [Migration("20230114181634_Initial1")]
-    partial class Initial1
+    [Migration("20230114183306_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,12 +28,12 @@ namespace PhonBook.infra.Data.sqlserver.Migrations
                     b.Property<int>("Contact_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Group_Id")
+                    b.Property<int>("ContactsId")
                         .HasColumnType("int");
 
-                    b.HasKey("Contact_id", "Group_Id");
+                    b.HasKey("Contact_id", "ContactsId");
 
-                    b.HasIndex("Group_Id");
+                    b.HasIndex("ContactsId");
 
                     b.ToTable("ContactGrop");
                 });
@@ -69,7 +69,7 @@ namespace PhonBook.infra.Data.sqlserver.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("contacts");
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("PhonBook.Core.Domain.Grops.Grop", b =>
@@ -119,7 +119,7 @@ namespace PhonBook.infra.Data.sqlserver.Migrations
 
                     b.HasOne("PhonBook.Core.Domain.Contacts.Contact", null)
                         .WithMany()
-                        .HasForeignKey("Group_Id")
+                        .HasForeignKey("ContactsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

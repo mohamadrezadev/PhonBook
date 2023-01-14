@@ -23,8 +23,8 @@ namespace PhonBook.infra.Data.sqlserver.Common
         public IDbConnection Connection => Database.GetDbConnection();
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("server=.;database=PhoneBooke_Db;trusted_connection=true;");
-            //base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer("server=.;database=PhoneBooke_Db;trusted_connection=true;");
+            base.OnConfiguring(optionsBuilder);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

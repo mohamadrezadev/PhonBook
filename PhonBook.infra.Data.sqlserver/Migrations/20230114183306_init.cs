@@ -4,7 +4,7 @@
 
 namespace PhonBook.infra.Data.sqlserver.Migrations
 {
-    public partial class test : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,14 +52,14 @@ namespace PhonBook.infra.Data.sqlserver.Migrations
                 columns: table => new
                 {
                     Contact_id = table.Column<int>(type: "int", nullable: false),
-                    Group_Id = table.Column<int>(type: "int", nullable: false)
+                    ContactsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ContactGrop", x => new { x.Contact_id, x.Group_Id });
+                    table.PrimaryKey("PK_ContactGrop", x => new { x.Contact_id, x.ContactsId });
                     table.ForeignKey(
-                        name: "FK_ContactGrop_Contacts_Group_Id",
-                        column: x => x.Group_Id,
+                        name: "FK_ContactGrop_Contacts_ContactsId",
+                        column: x => x.ContactsId,
                         principalTable: "Contacts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -72,9 +72,9 @@ namespace PhonBook.infra.Data.sqlserver.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ContactGrop_Group_Id",
+                name: "IX_ContactGrop_ContactsId",
                 table: "ContactGrop",
-                column: "Group_Id");
+                column: "ContactsId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
