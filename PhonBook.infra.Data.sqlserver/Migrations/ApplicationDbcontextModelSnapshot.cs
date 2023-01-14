@@ -67,7 +67,7 @@ namespace PhonBook.infra.Data.sqlserver.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("contacts");
                 });
 
             modelBuilder.Entity("PhonBook.Core.Domain.Grops.Grop", b =>

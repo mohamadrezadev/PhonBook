@@ -22,5 +22,6 @@ namespace PhonBook.Core.Domain.Grops
         Task<Grop> FindByNameAsync(string name);
         Grop FindByName(string name);
         List<Contact> GetContacts(int idgrop);
+        Task<List<Grop>> Serch_grop(string Fullname);
     }
 }

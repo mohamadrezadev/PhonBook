@@ -18,17 +18,13 @@ namespace PhonBook.infra.Data.sqlserver.Common
         //{
         //}
 
-        public virtual DbSet<Contact> Contacts { get; set; }
-        public virtual DbSet<Grop> Grops { get; set; }
+        public  DbSet<Contact> Contacts { get; set; }
+        public  DbSet<Grop> Grops { get; set; }
         public IDbConnection Connection => Database.GetDbConnection();
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer(@"Data Source=MOHAMADREZA\\MSSQLSERVER02;Initial Catalog=Phonebook;trusted_connection=true;");
-        //}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=185.120.222.106\\MSSQLSERVER2019,51019;Initial Catalog=PhoneBooke_Db ; user Id=PhoneBooke; Password=1W3xb67y_");
-            base.OnConfiguring(optionsBuilder);
+            //optionsBuilder.UseSqlServer("server=.;database=PhoneBooke_Db;trusted_connection=true;");
+            //base.OnConfiguring(optionsBuilder);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

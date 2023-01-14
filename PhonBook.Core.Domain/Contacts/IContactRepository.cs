@@ -18,5 +18,6 @@ namespace PhonBook.Core.Domain.Contacts
         Task<Contact> Create(Contact contact);
         Task<Contact> find_Contact_by_name_Async(string name);
         Contact find_Contact_by_name(string name);
+        Task< List<Contact>> Serch_contact(string Fullname);
     }
 }

@@ -10,5 +10,6 @@
     <ShouldLintJavaScriptReact>True</ShouldLintJavaScriptReact>
     <ShouldLintTypeScript>True</ShouldLintTypeScript>
     <ShouldLintTypeScriptReact>True</ShouldLintTypeScriptReact>
+    <NameOfLastUsedPublishProfile>F:\Project\edit\PhonBook\PhonBook\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
