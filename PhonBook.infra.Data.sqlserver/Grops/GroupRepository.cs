@@ -202,5 +202,15 @@ namespace PhonBook.infra.Data.sqlserver.Grops
                 return grop;
             }
         }
+
+        public async Task<List<Grop>> Serch_grop(string Name)
+        {
+            var query = "SELECT * FROM Grops WHERE Fullname like  @Name";
+            using (var connection = _context.CreateConnection())
+            {
+                var grops = await connection.QueryAsync<Grop>(query, new { Name });
+                return grops.ToList();
+            }
+        }
     }
 }

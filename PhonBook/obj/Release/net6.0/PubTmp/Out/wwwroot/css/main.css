@@ -1,0 +1,67 @@
+html{
+    background-color: #6A89CC;
+   }
+   .container{
+     display: flex;
+     height:100vh;
+     justify-content:center;
+     align-items:center;
+   }
+   .btn{
+     position:relative;
+     overflow:hidden;
+     height:50px;
+     width:100px;
+     border:0;
+     margin:5px;
+     font-weight:bold;
+     color:white;
+     outline:none;
+     border-radius:3px;
+     box-shadow:0px 3px 3px rgba(1,1,1,0.1);
+     transition:box-shadow 0.2s;
+   }
+   .btn-red{
+     background-color:#E71C23;
+   }
+   .btn-purple{
+     background-color:#7238E3;
+   }
+   .btn-yellow{
+     background-color:#F3B431;
+   }
+   .btn-dark{
+     background-color:#2B2B52;
+   }
+   .btn:hover{
+      box-shadow:0px 3px 7px rgba(1,1,1,0.3);
+   } 
+   .ripple{
+     position:absolute;
+     display:inline-block;
+     left:0;
+     top:0;
+     background-color:white;
+     border-radius:50%;
+     width:0;
+     height:0;
+     opacity:0.2;
+   }
+   
+   @keyframes ripple-expand{
+     0%{
+         width:10px;
+         height:10px;  
+         transform:scale(1);
+     }
+     50%{
+         width:50px;
+         height:50px;  
+         transform:scale(2.5);
+     }
+     100%{
+         width:100px; 
+         height:100px;  
+         transform:scale(3);
+     }
+   }

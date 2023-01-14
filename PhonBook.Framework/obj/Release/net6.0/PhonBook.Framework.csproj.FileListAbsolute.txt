@@ -1,0 +1,12 @@
+F:\Project\edit\PhonBook\PhonBook.Framework\bin\Release\net6.0\PhonBook.Framework.deps.json
+F:\Project\edit\PhonBook\PhonBook.Framework\bin\Release\net6.0\PhonBook.Framework.dll
+F:\Project\edit\PhonBook\PhonBook.Framework\bin\Release\net6.0\PhonBook.Framework.pdb
+F:\Project\edit\PhonBook\PhonBook.Framework\obj\Release\net6.0\PhonBook.Framework.csproj.AssemblyReference.cache
+F:\Project\edit\PhonBook\PhonBook.Framework\obj\Release\net6.0\PhonBook.Framework.GeneratedMSBuildEditorConfig.editorconfig
+F:\Project\edit\PhonBook\PhonBook.Framework\obj\Release\net6.0\PhonBook.Framework.AssemblyInfoInputs.cache
+F:\Project\edit\PhonBook\PhonBook.Framework\obj\Release\net6.0\PhonBook.Framework.AssemblyInfo.cs
+F:\Project\edit\PhonBook\PhonBook.Framework\obj\Release\net6.0\PhonBook.Framework.csproj.CoreCompileInputs.cache
+F:\Project\edit\PhonBook\PhonBook.Framework\obj\Release\net6.0\PhonBook.Framework.dll
+F:\Project\edit\PhonBook\PhonBook.Framework\obj\Release\net6.0\refint\PhonBook.Framework.dll
+F:\Project\edit\PhonBook\PhonBook.Framework\obj\Release\net6.0\PhonBook.Framework.pdb
+F:\Project\edit\PhonBook\PhonBook.Framework\obj\Release\net6.0\ref\PhonBook.Framework.dll

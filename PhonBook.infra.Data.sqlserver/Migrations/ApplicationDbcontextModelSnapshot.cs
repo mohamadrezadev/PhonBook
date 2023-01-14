@@ -26,12 +26,12 @@ namespace PhonBook.infra.Data.sqlserver.Migrations
                     b.Property<int>("Contact_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Group_Id")
+                    b.Property<int>("ContactsId")
                         .HasColumnType("int");
 
-                    b.HasKey("Contact_id", "Group_Id");
+                    b.HasKey("Contact_id", "ContactsId");
 
-                    b.HasIndex("Group_Id");
+                    b.HasIndex("ContactsId");
 
                     b.ToTable("ContactGrop");
                 });
@@ -117,7 +117,7 @@ namespace PhonBook.infra.Data.sqlserver.Migrations
 
                     b.HasOne("PhonBook.Core.Domain.Contacts.Contact", null)
                         .WithMany()
-                        .HasForeignKey("Group_Id")
+                        .HasForeignKey("ContactsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

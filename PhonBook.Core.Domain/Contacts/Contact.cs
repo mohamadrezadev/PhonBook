@@ -18,7 +18,7 @@ namespace PhonBook.Core.Domain.Contacts
         public string Phone_number2 { get; set; }
         public string Email { get; set; }
         public int Group_Id { get; set; }
-        [ForeignKey(nameof(Group_Id))]
+        //[ForeignKey(nameof(Group_Id))]
         public virtual List<Grop> Groups { get; set; } = new List<Grop>();
     }
 }
