@@ -11,11 +11,13 @@ namespace PhonBook.Controllers
     {
         private readonly IGroupRepository _GroupRepository;
         private readonly IContactRepository _ContactRepository;
+        private ILogger<GropController> _logger;
 
-        public GropController(IGroupRepository groupRepository, IContactRepository contactRepository)
+        public GropController(ILogger<GropController> logger, IGroupRepository groupRepository, IContactRepository contactRepository)
         {
             _GroupRepository = groupRepository;
             _ContactRepository = contactRepository;
+            _logger=logger;
         }
         /// <summary>
         /// Create a New Grop
@@ -67,20 +69,21 @@ namespace PhonBook.Controllers
         /// GET: /groups
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
-        {
+        {  
             try
             {
-                var grop = await _GroupRepository.FindByIdAsync(id);
+               var grop = await _GroupRepository.FindByIdAsync(id);
                 if (grop == null)
                     return NotFound();
                 var contacts = await _ContactRepository.GetAllAsync();
-                foreach (var Contactedit in contacts)
-                {
-                    var conatct_edit = Contactedit;
-                    conatct_edit.Group_Id = 0;
-                    _ContactRepository.Update(Contactedit.Id, conatct_edit);
-                }
-                _GroupRepository.Delete(id);
+                // foreach (var Contactedit in contacts)
+                // {
+                //     var conatct_edit = Contactedit;
+                //     conatct_edit.Group_Id = 0;
+                //     _ContactRepository.Update(Contactedit.Id, conatct_edit);
+                // }
+               var res= await _GroupRepository.DeleteAsync(id);
+                _logger.LogInformation($"deleted grop result query: {res}");
                 return RedirectToAction("Index", "Home",new {Status="Lis_Group"});
             }
             catch (Exception ex)
@@ -120,7 +123,8 @@ namespace PhonBook.Controllers
                     Organization = model.Organization,
                     Tell_phone = model.Tell_phone,
                 };
-                _GroupRepository.Update(model.id, EditGroup);
+                 var query = await _GroupRepository.Update(model.id, EditGroup);
+                _logger.LogInformation($"update grop result{query}");
                 return RedirectToAction("index", "Home",new {Status="Lis_Group"});
             }
             catch (Exception ex)

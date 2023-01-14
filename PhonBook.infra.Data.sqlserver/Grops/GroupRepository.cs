@@ -77,12 +77,21 @@ namespace PhonBook.infra.Data.sqlserver.Grops
             }
         }
 
-        public async void Delete(int Id)
+        public  void Delete(int Id)
         {
             var query = "DELETE FROM Grops WHERE Id = @Id";
             using (var connection = _context.CreateConnection())
             {
-                await connection.ExecuteAsync(query, new { Id });
+                connection.Execute(query, new { Id });
+            }
+        }
+        public async Task<int> DeleteAsync(int Id)
+        {
+            var query = "DELETE FROM Grops WHERE Id = @Id";
+            using (var connection = _context.CreateConnection())
+            {
+                var res=  await connection.ExecuteAsync(query, new { Id });
+                return res;
             }
         }
 
@@ -107,7 +116,7 @@ namespace PhonBook.infra.Data.sqlserver.Grops
             }
         }
 
-        public async void Update(int Id, Grop group)
+        public async Task< int >Update(int Id, Grop group)
         {
             var query = "UPDATE Grops SET Name = @Name, Name_Company=@Name_Company, Organization=@Organization, Tell_phone=@Tell_phone, Address=@Address, Code_posti=@Code_posti, Fax=@Fax, Contact_id=@Contact_id   WHERE Id = @Id";
 
@@ -124,7 +133,8 @@ namespace PhonBook.infra.Data.sqlserver.Grops
 
             using (var connection = _context.CreateConnection())
             {
-                await connection.ExecuteAsync(query, parameters);
+               var res= await connection.ExecuteAsync(query, parameters);
+                return res;
             }
 
         }
@@ -190,6 +200,16 @@ namespace PhonBook.infra.Data.sqlserver.Grops
             {
                 var grop =  connection.QuerySingleOrDefault<Grop>(query, new { Name });
                 return grop;
+            }
+        }
+
+        public async Task<List<Grop>> Serch_grop(string Name)
+        {
+            var query = "SELECT * FROM Grops WHERE Fullname like  @Name";
+            using (var connection = _context.CreateConnection())
+            {
+                var grops = await connection.QueryAsync<Grop>(query, new { Name });
+                return grops.ToList();
             }
         }
     }

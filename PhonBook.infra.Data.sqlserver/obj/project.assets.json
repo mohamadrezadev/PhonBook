@@ -2091,11 +2091,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Project\\PhonBook\\PhonBook.infra.Data.sqlserver\\PhonBook.infra.Data.sqlserver.csproj",
+      "projectUniqueName": "F:\\Project\\edit\\PhonBook\\PhonBook.infra.Data.sqlserver\\PhonBook.infra.Data.sqlserver.csproj",
       "projectName": "PhonBook.infra.Data.sqlserver",
-      "projectPath": "F:\\Project\\PhonBook\\PhonBook.infra.Data.sqlserver\\PhonBook.infra.Data.sqlserver.csproj",
+      "projectPath": "F:\\Project\\edit\\PhonBook\\PhonBook.infra.Data.sqlserver\\PhonBook.infra.Data.sqlserver.csproj",
       "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-      "outputPath": "F:\\Project\\PhonBook\\PhonBook.infra.Data.sqlserver\\obj\\",
+      "outputPath": "F:\\Project\\edit\\PhonBook\\PhonBook.infra.Data.sqlserver\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2117,8 +2117,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "F:\\Project\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj": {
-              "projectPath": "F:\\Project\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj"
+            "F:\\Project\\edit\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj": {
+              "projectPath": "F:\\Project\\edit\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj"
             }
           }
         }

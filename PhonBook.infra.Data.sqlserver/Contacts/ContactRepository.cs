@@ -114,6 +114,15 @@ namespace PhonBook.infra.Data.sqlserver.Contacts
                 return contact;
             }
         }
+        public async Task< List<Contact> >Serch_contact(string Fullname)
+        {
+            var query = "SELECT * FROM Contacts WHERE Fullname like  @Fullname";
+            using (var connection = _context.CreateConnection())
+            {
+                var contact =await connection.QueryAsync<Contact>(query, new { Fullname });
+                return contact.ToList();
+            }
+        }
 
         public async Task<Contact> find_Contact_by_name_Async(string Fullname)
         {

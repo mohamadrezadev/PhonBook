@@ -586,11 +586,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Project\\PhonBook\\PhonBook.Framework\\PhonBook.Framework.csproj",
+      "projectUniqueName": "F:\\Project\\edit\\PhonBook\\PhonBook.Framework\\PhonBook.Framework.csproj",
       "projectName": "PhonBook.Framework",
-      "projectPath": "F:\\Project\\PhonBook\\PhonBook.Framework\\PhonBook.Framework.csproj",
+      "projectPath": "F:\\Project\\edit\\PhonBook\\PhonBook.Framework\\PhonBook.Framework.csproj",
       "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-      "outputPath": "F:\\Project\\PhonBook\\PhonBook.Framework\\obj\\",
+      "outputPath": "F:\\Project\\edit\\PhonBook\\PhonBook.Framework\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

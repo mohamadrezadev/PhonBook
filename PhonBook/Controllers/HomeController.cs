@@ -24,16 +24,16 @@ public class HomeController : Controller
     ///</summary>
     public async Task<IActionResult> Index(string Status = "List_Coantact", string Message = null)
     {
-        _logger.LogInformation("Called Index endpoint");
+        _logger.LogInformation("Called Index action and get status "+Status);
         var result = new Basemodel();
         var vm = new vm();
         var List_grop = new List<VmGrop>();
         var List_Contacts = new List<Vmcontact>();
-        var Grops = await _GroupRepository.GetAllAsync();
+        var Grops =await  _GroupRepository.GetAllAsync();
         _logger.LogInformation($"Grops count is  :{Grops.Count}");
-        var Contacts = await _ContactRepository.GetAllAsync();
+        var Contacts =  _ContactRepository.GetAll();
         _logger.LogInformation($"Contact count is  :{Contacts.Count}");
-        Contacts.ForEach(contact =>
+        Contacts.ForEach( contact =>
         {
             var vmContact = new Vmcontact()
             {
@@ -115,21 +115,26 @@ public class HomeController : Controller
         }
         try
         {
-            var Grop = _GroupRepository.FindByName(Name_Grop);
-            if (Grop != null)
+            var Grops =await _GroupRepository.Serch_grop(Name_Grop);
+            if (Grops.Count()>0)
             {
-                var vmgrop = new VmGrop()
+                foreach (var Grop in Grops)
                 {
-                    Name = Grop.Name,
-                    Address = Grop.Address,
-                    Code_posti = Grop.Code_posti,
-                    Fax = Grop.Fax,
-                    Name_Company = Grop.Name_Company,
-                    Organization = Grop.Organization,
-                    Tell_phone = Grop.Tell_phone,
-                    id = Grop.Id,
-                };
-                result.VmGrops.Add(vmgrop);
+                    var vmgrop = new VmGrop()
+                    {
+                        Name = Grop.Name,
+                        Address = Grop.Address,
+                        Code_posti = Grop.Code_posti,
+                        Fax = Grop.Fax,
+                        Name_Company = Grop.Name_Company,
+                        Organization = Grop.Organization,
+                        Tell_phone = Grop.Tell_phone,
+                        id = Grop.Id,
+                    };
+                    result.VmGrops.Add(vmgrop);
+
+                }
+
             }
             var Contacts = await _ContactRepository.GetAllAsync();
             Contacts.ForEach(contact =>
@@ -181,23 +186,36 @@ public class HomeController : Controller
         try
         {
 
-            var Contact = await _ContactRepository.find_Contact_by_name_Async(Fullname);
-            var Groups = _GroupRepository.GetAll();
-            if (Contact != null)
+            var Contacts = await _ContactRepository.Serch_contact(Fullname);
+            var Groups =await _GroupRepository.GetAllAsync();
+            if (Contacts.Count()>0)
             {
-                var vmContact = new Vmcontact()
+                foreach (var Contact in Contacts)
                 {
-                    Email = Contact.Email,
-                    Fullname = Contact.Fullname,
-                    Id = Contact.Id,
-                    Phone_number1 = Contact.Phone_number1,
-                    Phone_number2 = Contact.Phone_number2,
-                    POST = Contact.POST,
-                    gropid = Contact.Group_Id,
-                    Tell_phone = Contact.Tell_phone,
-                };
-                result.Vmcontacts.Add(vmContact);
 
+
+                    var vmContact = new Vmcontact()
+                    {
+                        Email = Contact.Email,
+                        Fullname = Contact.Fullname,
+                        Id = Contact.Id,
+                        Phone_number1 = Contact.Phone_number1,
+                        Phone_number2 = Contact.Phone_number2,
+                        POST = Contact.POST,
+                        gropid = Contact.Group_Id,
+                        Tell_phone = Contact.Tell_phone,
+                    };
+                    if (Contact.Group_Id != 0)
+                    {
+                        var grop = await _GroupRepository.FindByIdAsync(Contact.Group_Id);
+                        if (grop != null)
+                        {
+                            vmContact.Name_Grop = grop.Name;
+                        }
+                        result.Vmcontacts.Add(vmContact);
+                    }
+
+                }
             }
             Groups.ForEach(grop =>
             {

@@ -605,11 +605,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Project\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj",
+      "projectUniqueName": "F:\\Project\\edit\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj",
       "projectName": "PhonBook.Core.Domain",
-      "projectPath": "F:\\Project\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj",
+      "projectPath": "F:\\Project\\edit\\PhonBook\\PhonBook.Core.Domain\\PhonBook.Core.Domain.csproj",
       "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-      "outputPath": "F:\\Project\\PhonBook\\PhonBook.Core.Domain\\obj\\",
+      "outputPath": "F:\\Project\\edit\\PhonBook\\PhonBook.Core.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -631,8 +631,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "F:\\Project\\PhonBook\\PhonBook.Framework\\PhonBook.Framework.csproj": {
-              "projectPath": "F:\\Project\\PhonBook\\PhonBook.Framework\\PhonBook.Framework.csproj"
+            "F:\\Project\\edit\\PhonBook\\PhonBook.Framework\\PhonBook.Framework.csproj": {
+              "projectPath": "F:\\Project\\edit\\PhonBook\\PhonBook.Framework\\PhonBook.Framework.csproj"
             }
           }
         }
